@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  mssql:
+    container_name: mssql
+    image: "mcr.microsoft.com/azure-sql-edge"
+    environment:
+      - ACCEPT_EULA=${ACCEPT_EULA:-1}
+      - MSSQL_PID=${MSSQL_PID:-Developer}
+      - MSSQL_USER=${MSSQL_USER:-SA}
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD:-MyPass@word}
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql:/var/opt/mssql
+
+volumes:
+  mssql:
